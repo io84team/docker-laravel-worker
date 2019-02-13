@@ -127,6 +127,8 @@ RUN if [ ${INSTALL_MCRYPT} = true ]; then \
 
 RUN docker-php-ext-install pdo_mysql
 
+RUN rm /var/cache/apk/*
+
 #
 #--------------------------------------------------------------------------
 # Final Touch
@@ -137,11 +139,10 @@ COPY ./conf/supervisord.conf /etc/supervisord.conf
 COPY ./conf/supervisord.d /etc/supervisord.d
 
 RUN mkdir -p /app
-
 RUN chown -R www-data:www-data /app
 
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c",  "/etc/supervisord.conf"]
 
 VOLUME /app
 
-WORKDIR /app
+WORKDIR /etc/supervisor/conf.d/
