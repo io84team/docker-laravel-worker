@@ -127,8 +127,6 @@ RUN if [ ${INSTALL_MCRYPT} = true ]; then \
 
 RUN docker-php-ext-install pdo_mysql
 
-RUN rm /var/cache/apk/*
-
 #
 #--------------------------------------------------------------------------
 # Final Touch
